@@ -14,7 +14,7 @@ import java.util.List;
  * @date 2018/12/29
  * Description : 默认 Object
  */
-public abstract class DefaultIExcel<T> implements IExcel<T> {
+public   class DefaultIExcel<T> implements IExcel<T> {
 
     @Override
     public List<T> read(File file, Class<T> objectClass) throws Exception {
@@ -23,15 +23,12 @@ public abstract class DefaultIExcel<T> implements IExcel<T> {
     @Override
     public List<T> read(File file, Class<T> objectClass,
                         Convert[] converts) throws Exception {
-        if(objectClass.getDeclaringClass() instanceof Object){
-            InputStream in = new FileInputStream(file);
-            try {
-                return ExcelUtils.getInstance().readExcel(in,file,objectClass,converts);
-            }finally {
-                in.close();
-            }
+        InputStream in = new FileInputStream(file);
+        try {
+            return ExcelUtils.getInstance().readExcel(in,file,objectClass,converts);
+        }finally {
+            in.close();
         }
-        return null;
     }
 
     @Override

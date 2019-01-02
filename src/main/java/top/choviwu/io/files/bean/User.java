@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import top.choviwu.io.files.core.annotation.Sequence;
 
+import java.io.Serializable;
+
 /**
  * @author ChoviWu
  * @date 2018/12/29
@@ -11,9 +13,9 @@ import top.choviwu.io.files.core.annotation.Sequence;
  */
 @Setter
 @Getter
-public class User {
+public class User implements Serializable{
 
-    @Sequence(index = 0)
+    @Sequence
     private String name;
 
     @Sequence(index = 1)

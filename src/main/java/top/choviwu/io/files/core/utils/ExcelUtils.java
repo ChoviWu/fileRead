@@ -51,6 +51,20 @@ public class ExcelUtils {
         return list;
     }
 
+    public  <T> List<T> readExcel(InputStream is, String pattern,Class<T> tClass,Convert[] converts) {
+        List<T> list = new ArrayList<>();
+        try {
+            if (".xlsx".equals(pattern)) {
+                list = readXlsx(is, tClass,converts);
+            } else if (".xls".equals(pattern)) {
+                list = readXls(is,tClass);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     /**
      * 读取excel表格内容(excel2007以上)
      * @param is    IO

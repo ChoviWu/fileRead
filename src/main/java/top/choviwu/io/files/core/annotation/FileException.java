@@ -5,14 +5,14 @@ package top.choviwu.io.files.core.annotation;
  * @date 2018/12/29
  * Description :
  */
-public class ReadException extends RuntimeException{
+public class FileException extends RuntimeException{
 
     private String message;
 
-    public ReadException() {
+    public FileException() {
     }
 
-    public ReadException(String message) {
+    public FileException(String message) {
         super(message);
     }
 
