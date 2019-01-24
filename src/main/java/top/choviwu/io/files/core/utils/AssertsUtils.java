@@ -1,4 +1,4 @@
-package top.choviwu.io.files.core.annotation;
+package top.choviwu.io.files.core.utils;
 
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
@@ -10,7 +10,7 @@ import java.util.function.Supplier;
  * @date 2019/1/2
  * Description :
  */
-public class Asserts {
+public class AssertsUtils {
 
 
     public static void isTrue(boolean expression, String message) {

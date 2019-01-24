@@ -1,4 +1,4 @@
-package top.choviwu.io.files.core.utils;
+package top.choviwu.io.files.core.files;
 
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -9,12 +9,12 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import top.choviwu.io.files.core.annotation.Constants;
 import top.choviwu.io.files.core.convert.Convert;
 import top.choviwu.io.files.core.convert.DefaultConvert;
+import top.choviwu.io.files.core.utils.ReflectUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,43 +24,47 @@ import java.util.List;
  * @date 2018/12/29
  * Description : 读取Excel
  */
-public class ExcelUtils {
+public class ExcelRead implements Closable {
 
-    public static ExcelUtils EXCEL = new ExcelUtils();
+    public static ExcelRead EXCEL = new ExcelRead();
 
     /**
      * 使用单例
      * @return
      */
-    public static ExcelUtils getInstance(){
+    public static ExcelRead getInstance(){
         return EXCEL;
     }
 
 
-    public  <T> List<T> readExcel(InputStream is, File file,Class<T> tClass,Convert[] converts) {
+    public  <T> List<T> readExcel(InputStream is, File file,Class<T> tClass,Convert[] converts) throws IOException {
         List<T> list = new ArrayList<>();
         try {
-            if (file.getPath().endsWith(".xlsx")) {
+            if (file.getPath().endsWith(Constants.XLSX)) {
                 list = readXlsx(is, tClass,converts);
-            } else if (file.getPath().endsWith(".xls")) {
+            } else if (file.getPath().endsWith(Constants.XLS)) {
                 list = readXls(is,tClass);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            this.close(is);
         }
         return list;
     }
 
-    public  <T> List<T> readExcel(InputStream is, String pattern,Class<T> tClass,Convert[] converts) {
+    public  <T> List<T> readExcel(InputStream is, String pattern,Class<T> tClass,Convert[] converts) throws IOException {
         List<T> list = new ArrayList<>();
         try {
-            if (".xlsx".equals(pattern)) {
+            if (Constants.XLSX.equals(pattern)) {
                 list = readXlsx(is, tClass,converts);
-            } else if (".xls".equals(pattern)) {
+            } else if (Constants.XLS.equals(pattern)) {
                 list = readXls(is,tClass);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            this.close(is);
         }
         return list;
     }
@@ -157,11 +161,17 @@ public class ExcelUtils {
         if (xssfRow.getCellType() == XSSFCell.CELL_TYPE_BOOLEAN) {
             return String.valueOf(xssfRow.getBooleanCellValue());
         } else if (xssfRow.getCellType() == XSSFCell.CELL_TYPE_NUMERIC) {
-            DecimalFormat df = new DecimalFormat("0");
+            DecimalFormat df = new DecimalFormat(Constants.ZERO);
             return df.format(xssfRow.getNumericCellValue());
         } else {
             return String.valueOf(xssfRow.getStringCellValue());
         }
     }
 
+    @Override
+    public void close(Closeable inputStream) throws IOException {
+        if(inputStream!=null){
+            inputStream.close();
+        }
+    }
 }

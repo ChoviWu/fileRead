@@ -1,10 +1,8 @@
-package top.choviwu.io.files.core.files.excel;
+package top.choviwu.io.files.core.files;
 
-import top.choviwu.io.files.core.annotation.Closable;
 import top.choviwu.io.files.core.convert.Convert;
 
 import java.io.File;
-import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -12,7 +10,7 @@ import java.util.List;
  * @date 2018/12/29
  * Description :
  */
-public interface IExcel<T> extends Closable<InputStream> {
+public interface IFileType<T> extends Closable  {
     enum TYPE{
         EXCEL("EXCEL",1),
         PDF("PDF",2),

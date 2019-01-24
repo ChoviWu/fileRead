@@ -12,7 +12,7 @@
 	<artifactId>files</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>files</name>
-	<description>Demo project for Spring Boot</description>
+	<description>io files read </description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -42,6 +42,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>2.0.12</version>
+		</dependency>
+
 		<!--导出功能架包-->
 
 		<dependency>

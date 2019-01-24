@@ -1,22 +1,20 @@
 package top.choviwu.io.files.core.files.translator;
 
 import lombok.Data;
-import top.choviwu.io.files.bean.User;
-import top.choviwu.io.files.core.annotation.Asserts;
-import top.choviwu.io.files.core.annotation.FileStrategy;
+import top.choviwu.io.files.core.annotation.FileException;
 import top.choviwu.io.files.core.convert.Convert;
-import top.choviwu.io.files.core.files.excel.DefaultIExcel;
-import top.choviwu.io.files.core.files.excel.UserExcel;
+import top.choviwu.io.files.core.files.DefaultIExcel;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * @author ChoviWu
  * @date 2019/1/2
- * Description :
+ * Description : Doc transform
+ * @see DefaultFileStrategy
+ * @see PDFFileStrategy
  */
 @Data
 public class ExcelFileStrategy<K> extends DefaultFileStrategy<K,List<K>> {
@@ -34,12 +32,9 @@ public class ExcelFileStrategy<K> extends DefaultFileStrategy<K,List<K>> {
         this.converts = converts;
         this.file = file;
     }
-
-
     @Override
-    public List<K> transform(Class<K> k) throws Exception {
-        transFile(file);
-        return new DefaultIExcel().read(file,k.getClass(),converts);
+    public List<K> transform(K param,Object ...obj) throws IOException {
+        return new DefaultIExcel().read(file,param.getClass(),converts);
     }
 
 }

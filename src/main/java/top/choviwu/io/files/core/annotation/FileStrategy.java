@@ -1,28 +1,17 @@
 package top.choviwu.io.files.core.annotation;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * @author ChoviWu
  * @date 2019/1/2
- * Description :
+ * Description : 文件转化策略接口  用于转化文件
  */
-public interface FileStrategy<T> {
+public interface FileStrategy<K,V> {
 
-    enum TYPE{
-        DEFAULT("DEFAULT",0),
-        EXCEL("EXCEL",1),
-        PDF("PDF",2),
-        WORD("WORD",3)
-        ;
-        TYPE(String type,Integer number){
 
-        }
+    V transFile(K param,Object ...obj) throws Exception;
 
-        TYPE() {
-        }
 
-    }
-
-    TYPE transFile(File file);
 }
