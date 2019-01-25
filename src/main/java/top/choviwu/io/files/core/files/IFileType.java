@@ -22,8 +22,6 @@ public interface IFileType<T> extends Closable  {
 
     }
 
-    List<T> read(File file, Class<T> tClass) throws Exception;
-
     List<T> read(File file, Class<T> tClass, Convert[] converts) throws Exception;
 
 

@@ -1,4 +1,4 @@
-package top.choviwu.io.files.bean;
+package top.choviwu.io.files.core.bean;
 
 import lombok.Getter;
 import lombok.Setter;

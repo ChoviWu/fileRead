@@ -43,7 +43,7 @@ public class PDFFileStrategy<K> extends DefaultFileStrategy<K,Object> {
         if(obj.length>0){
             if(obj[0] instanceof File && param instanceof TRead){
                 synchronized (this) {
-                    return (String) ((TRead) param).readFile(file, (File) obj[0], null);
+                    return  ((TRead) param).readFile(file, (File) obj[0], null);
                 }
             }
         }

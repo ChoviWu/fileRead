@@ -1,8 +1,4 @@
-package top.choviwu.io.files.core.annotation;
-
-import java.io.File;
-import java.io.IOException;
-
+package top.choviwu.io.files.core.annotation; 
 /**
  * @author ChoviWu
  * @date 2019/1/2

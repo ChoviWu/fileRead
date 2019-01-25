@@ -13,17 +13,13 @@ import java.util.List;
 public class DefaultIExcel<T> implements IFileType<T> {
 
     @Override
-    public List<T> read(File file, Class<T> objectClass) throws IOException {
-        return null;
-    }
-    @Override
     public List<T> read(File file, Class<T> objectClass,
                         Convert[] converts) throws IOException {
         InputStream in = new FileInputStream(file);
         try {
             return ExcelRead.getInstance().readExcel(in,file,objectClass,converts);
         }finally {
-            in.close();
+            this.close(in);
         }
     }
 

@@ -1,6 +1,7 @@
 package top.choviwu.io.files.core.files;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.printing.PDFPrintable;
 import org.apache.pdfbox.text.PDFTextStripper;
 import top.choviwu.io.files.core.annotation.Constants;
 
@@ -15,6 +16,13 @@ import java.net.URL;
  */
 public class PdfRead implements TRead<String,Object> ,Closable {
 
+
+    public static PdfRead PDF = null;
+
+    static {
+        PDF = new PdfRead();
+    }
+
     /**
      * @param srcFile
      * @param targetFile
@@ -26,8 +34,6 @@ public class PdfRead implements TRead<String,Object> ,Closable {
         boolean sort = false;
         // pdf文件名
         File pdfFile = srcFile;
-        // 输入文本文件名称
-        String textFile = null;
         // 开始提取页数
         int startPage = 1;
         // 结束提取页数
@@ -89,6 +95,11 @@ public class PdfRead implements TRead<String,Object> ,Closable {
             close(document);
         }
         return sb.toString();
+    }
+
+    public void excelToPdf() throws IOException {
+        PDFPrintable table = new PDFPrintable(PDDocument.load(new File("")));
+        //TODO excelToPDF
     }
 
     @Override

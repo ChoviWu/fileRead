@@ -14,5 +14,9 @@ public interface Closable {
      * @param t  channel closed
      * @throws IOException
      */
-    void close(Closeable t) throws IOException;
+    default void close(Closeable t) throws IOException{
+        if(t!=null){
+            t.close();
+        }
+    }
 }

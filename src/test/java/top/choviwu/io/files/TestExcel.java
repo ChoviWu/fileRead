@@ -1,13 +1,11 @@
 package top.choviwu.io.files;
 
 import org.junit.Test;
-import top.choviwu.io.files.bean.User;
+import top.choviwu.io.files.core.bean.User;
 import top.choviwu.io.files.core.convert.Convert;
 import top.choviwu.io.files.core.convert.DefaultConvert;
-import top.choviwu.io.files.core.files.DefaultIExcel;
 import top.choviwu.io.files.core.files.translator.DefaultFileStrategy;
 import top.choviwu.io.files.core.files.translator.ExcelFileStrategy;
-import top.choviwu.io.files.core.files.ExcelRead;
 
 import java.io.*;
 import java.util.List;
